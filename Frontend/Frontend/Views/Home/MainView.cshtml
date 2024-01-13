@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Frontend.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "MainView";
+}
+
+<h1>Tasks</h1>
+
+<p>
+    <input type="button" value="Create New" onclick="location.href='@Url.Action("Create")'" class="btn btn-primary" />
+</p>
+<table class="table" style="background-color: #F5F5F5;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deadline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { taskId = item.TaskId }, new { @class = "btn btn-warning" }) <i class="fas fa-edit"></i>
+                @Html.ActionLink("Delete", "Delete", new { taskId = item.TaskId }, new { @class = "btn btn-danger" }) <i class="fas fa-trash"></i>
+
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
