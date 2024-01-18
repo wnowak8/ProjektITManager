@@ -16,5 +16,7 @@ namespace Backend.Models
         public required string Status { get; set; }
 
         public required string ProjectName { get; set; }
+
+        public required string AssignedTo { get; set; }
     }
 }

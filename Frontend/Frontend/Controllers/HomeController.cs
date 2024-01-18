@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace Frontend.Controllers
 {
@@ -27,15 +28,64 @@ namespace Frontend.Controllers
             return View();
         }
 
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit(string taskId)
         {
-            return View();
+            var client = new HttpClient();
+            var response = await client.GetAsync($"https://localhost:7244/api/Tasks/{taskId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var dataObject = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<TaskModel>(dataObject);
+
+                var taskModel = new TaskModel
+                {
+                    TaskId = result.TaskId,
+                    Title = result.Title,
+                    Description = result.Description,
+                    Deadline = result.Deadline,
+                    Status = result.Status,
+                    ProjectName = result.ProjectName,
+                    AssignedTo = result.AssignedTo
+                };
+
+                return View(taskModel);
+            }
+            else
+            {
+                return View("Error");
+            }
         }
 
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(string taskId)
         {
-            return View();
+            var client = new HttpClient();
+            var response = await client.GetAsync($"https://localhost:7244/api/Tasks/{taskId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var dataObject = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<TaskModel>(dataObject);
+
+                var taskModel = new TaskModel
+                {
+                    TaskId = result.TaskId,
+                    Title = result.Title,
+                    Description = result.Description,
+                    Deadline = result.Deadline,
+                    Status = result.Status,
+                    ProjectName = result.ProjectName,
+                    AssignedTo = result.AssignedTo
+                };
+
+                return View(taskModel);
+            }
+            else
+            {
+                return View("Error");
+            }
         }
+
 
         public async Task<IActionResult> MainView()
         {

@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TaskId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
@@ -30,15 +27,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProjectName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssignedTo)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TaskId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -55,7 +52,10 @@
                 @Html.DisplayFor(modelItem => item.ProjectName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { taskId = item.TaskId }, new { @class = "btn btn-warning" }) <i class="fas fa-edit"></i>
+                @Html.DisplayFor(modelItem => item.AssignedTo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { taskId = item.TaskId }, new { @class = "btn btn-primary" }) <i class="fas fa-edit"></i>
                 @Html.ActionLink("Delete", "Delete", new { taskId = item.TaskId }, new { @class = "btn btn-danger" }) <i class="fas fa-trash"></i>
 
 

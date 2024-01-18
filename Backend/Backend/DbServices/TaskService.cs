@@ -43,6 +43,7 @@ namespace Backend.DbServices
                 existingTask.Deadline = updatedTask.Deadline;
                 existingTask.Status = updatedTask.Status;
                 existingTask.ProjectName = updatedTask.ProjectName;
+                existingTask.AssignedTo = updatedTask.AssignedTo;
 
                 await db.SaveChangesAsync();
             }

@@ -12,12 +12,6 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TaskId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TaskId)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
         <dd class = "col-sm-10">
@@ -47,9 +41,16 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ProjectName)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AssignedTo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AssignedTo)
+        </dd>
     </dl>
     
     <form asp-action="DeleteTask">
+        <input type="hidden" name="taskId" value="@Model?.TaskId"/>
         <input type="submit" value="Delete" class="btn btn-danger" />
         <input type="button" value="Back to List" onclick="location.href='@Url.Action("MainView")'" class="btn btn-secondary" />
     </form>
